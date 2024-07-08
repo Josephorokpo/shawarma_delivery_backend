@@ -42,7 +42,10 @@ class OrderDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAdminUser]
     lookup_field = 'id'
 
-     
+    @swagger_auto_schema(
+        operation_summary="Retrieve an order by ID",
+        responses={200: OrderCreationSerializer()}
+    ) 
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
