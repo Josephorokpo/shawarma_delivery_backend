@@ -62,7 +62,10 @@ class OrderDetailView(generics.RetrieveUpdateDestroyAPIView):
             return Response(data=serializer.data, status=status.HTTP_200_OK)
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-     
+    @swagger_auto_schema(
+        operation_summary="Delete an order by ID",
+        responses={204: "No Content"}
+    ) 
     def delete(self, request, id):
         order = self.get_object()
         order.delete()
