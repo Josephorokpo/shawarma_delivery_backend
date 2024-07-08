@@ -117,7 +117,10 @@ class UserOrderDetailView(generics.RetrieveAPIView):
     serializer_class = OrderCreationSerializer
     permission_classes = [IsAuthenticated]
 
-     
+    @swagger_auto_schema(
+        operation_summary="Retrieve a specific order for a user by user ID and order ID",
+        responses={200: OrderCreationSerializer(), 404: "Not Found"}
+    ) 
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
