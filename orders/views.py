@@ -62,4 +62,26 @@ class UpdateOrderStatusView(generics.UpdateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+class UserOrdersView(generics.ListAPIView):
+    serializer_class = UserOrderSerializer
+    permission_classes = [IsAuthenticated]
+
+     
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        user_id = self.kwargs.get('user_id')
+        return Order.objects.filter(customer__id=user_id)
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        if not queryset.exists():
+            return Response({"detail": "No orders found for this user."}, status=status.HTTP_404_NOT_FOUND)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 
