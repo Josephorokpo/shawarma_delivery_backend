@@ -49,7 +49,11 @@ class OrderDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
-     
+    @swagger_auto_schema(
+        operation_summary="Update an order by ID",
+        responses={200: OrderCreationSerializer(), 400: "Bad Request"},
+        request_body=OrderCreationSerializer
+    ) 
     def put(self, request, id):
         order = self.get_object()
         serializer = self.serializer_class(order, data=request.data, partial=True)
