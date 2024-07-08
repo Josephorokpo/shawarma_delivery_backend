@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     #third party
     'rest_framework',
     'djoser',
+    'drf_yasg',
 ]
 
 AUTH_USER_MODEL='authentication.User'
