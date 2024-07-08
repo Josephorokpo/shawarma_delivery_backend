@@ -84,4 +84,24 @@ class UserOrdersView(generics.ListAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class UserOrderDetailView(generics.RetrieveAPIView):
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
+
+     
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        user_id = self.kwargs.get('user_id')
+        order_id = self.kwargs.get('order_id')
+        return Order.objects.filter(customer__id=user_id, id=order_id)
+
+    def retrieve(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        order = queryset.first()
+        if not order:
+            return Response({"detail": "Order not found for this user."}, status=status.HTTP_404_NOT_FOUND)
+        serializer = self.get_serializer(order)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
