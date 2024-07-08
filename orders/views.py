@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import generics, status
 from rest_framework.response import Response
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from .serializers import OrderCreationSerializer, OrderStatusUpdateSerializer, UserOrderSerializer
 from .models import Order
@@ -16,6 +17,10 @@ class OrderCreateListView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     
+    @swagger_auto_schema(
+        operation_summary="List all orders",
+        responses={200: OrderCreationSerializer(many=True)}
+    )
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
