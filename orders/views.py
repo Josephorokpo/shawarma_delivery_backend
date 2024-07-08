@@ -25,6 +25,11 @@ class OrderCreateListView(generics.ListCreateAPIView):
         return super().get(request, *args, **kwargs)
 
      
+    @swagger_auto_schema(
+        operation_summary="Create a new order",
+        responses={201: OrderCreationSerializer()},
+        request_body=OrderCreationSerializer
+    )
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
 
