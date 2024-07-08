@@ -3,7 +3,7 @@ from .models import Order
 from rest_framework import serializers
 
 
-class OrderSerializer(serializers.ModelSerializer):
+class OrderCreationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'size', 'status', 'quantity', 'created_at', 'updated_at']
