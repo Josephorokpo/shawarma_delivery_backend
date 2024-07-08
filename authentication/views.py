@@ -5,10 +5,10 @@ from .models import User
 from . import serializers
 
 # Create your views here.
-class HelloAuthView(generics.GenericAPIView):
-    def get(self, request):
-        response_data = {"message": "hello Auth"}
-        return Response(data=response_data, status=status.HTTP_200_OK)
+# class HelloAuthView(generics.GenericAPIView):
+#     def get(self, request):
+#         response_data = {"message": "hello Auth"}
+#         return Response(data=response_data, status=status.HTTP_200_OK)
     
 
 class UserCreateView(generics.GenericAPIView):
