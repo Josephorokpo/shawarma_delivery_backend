@@ -78,7 +78,10 @@ class UpdateOrderStatusView(generics.UpdateAPIView):
     permission_classes = [IsAdminUser]
     lookup_field = 'id'
 
-     
+    @swagger_auto_schema(
+        operation_summary="Update order status",
+        operation_description="Update the status of an order. Only accessible by superusers.",
+    ) 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=True)
@@ -91,7 +94,10 @@ class UserOrdersView(generics.ListAPIView):
     serializer_class = UserOrderSerializer
     permission_classes = [IsAuthenticated]
 
-     
+    @swagger_auto_schema(
+        operation_summary="List all orders for a user",
+        responses={200: UserOrderSerializer(many=True), 404: "Not Found"}
+    ) 
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
