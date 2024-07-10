@@ -24,7 +24,7 @@ class OrderCreateListView(generics.ListCreateAPIView):
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
-     
+    
     @swagger_auto_schema(
         operation_summary="Create a new order",
         responses={201: OrderCreationSerializer()},
@@ -35,6 +35,7 @@ class OrderCreateListView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(customer=self.request.user)
+
 
 class OrderDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OrderCreationSerializer
@@ -81,7 +82,7 @@ class UpdateOrderStatusView(generics.UpdateAPIView):
     @swagger_auto_schema(
         operation_summary="Update order status",
         operation_description="Update the status of an order. Only accessible by superusers.",
-    ) 
+    )
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=True)
