@@ -37,29 +37,21 @@ The Shawarma Delivery Backend API is a robust and scalable RESTful API service d
 | METHOD |              ROUTE             |            FUNCTIONALITY        | ACCESS    |
 |--------|--------------------------------|---------------------------------|-----------|
 |                               User Authentication                                     | 
-|---------------------------------------------------------------------------------------|
 | POST   | /auth/signup/                  | Signup a new user               | All users |
 | POST   | /auth/jwt/create/              | Login user                      | All users |
 | POST   | /auth/jwt/refresh/             | Refresh the access token        | All users |
-|---------------------------------------------------------------------------------------|
 |                               Order Management                                        |
-|---------------------------------------------------------------------------------------|
 | POST   | /orders/                       | Place an order                  | All users |
 | GET    | /orders/                       | Get all orders                  | All users |
 | GET    | /orders/{order_id}/            | Retrieve an order               | Superuser |
 | PUT    | /orders/{order_id}/            | Update an order                 | Superuser |
 | PUT    | /orders/{order_id}/status/     | Update order status             | Superuser |
 | DELETE | /orders/{order_id}/            | Delete an order                 | Superuser |
-|---------------------------------------------------------------------------------------|
 |                               User-Specific Orders                                    |
-|---------------------------------------------------------------------------------------|
 | GET    | /user/{user_id}/orders/        | Get user's Orders               | All users |
 | GET    | /user/{user_id}/orders/{order_id}/ | Get a user's specific order | All users |
-|---------------------------------------------------------------------------------------|
 |                               API Documentation                                       |
-|---------------------------------------------------------------------------------------|
 | GET    | /docs/                         | View API documentation          | All users |
-|---------------------------------------------------------------------------------------|
 
 ## Installation
 1. Step 1
