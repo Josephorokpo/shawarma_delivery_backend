@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: shawarma-delivery-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn shawarma_delivery.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: shawarma_delivery.settings
+      - key: SECRET_KEY
+        sync: false # Do not sync this key from the render.yaml file
+      - key: DEBUG
+        value: 'False'
+      - key: ALLOWED_HOSTS
+        value: shawarma-delivery.onrender.com
+      - key: Internal_Database_URL
+        value: postgresql://shawarma_api_db_user:U6jgfOs7n0lNgRVJXfv45GCPtnEJ3PV4@dpg-cq6h91ss1f4s73e3a410-a/shawarma_api_db
+
+databases:
+  - name: shawarma_api_db
+    engine: postgres
+    plan: free
+    defaultDatabaseName: dpg-cq6h91ss1f4s73e3a410-a
+    user: shawarma_api_db_user
+    password: U6jgfOs7n0lNgRVJXfv45GCPtnEJ3PV4
