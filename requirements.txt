@@ -18,6 +18,7 @@ inflection==0.5.1
 oauthlib==3.2.2
 packaging==24.1
 phonenumbers==8.13.40
+psycopg2-binary==2.9.9
 pycparser==2.22
 PyJWT==2.8.0
 python-decouple==3.8
