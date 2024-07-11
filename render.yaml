@@ -3,6 +3,7 @@ services:
     name: shawarma-delivery-backend
     env: python
     plan: free
+    port: 10000
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn shawarma_delivery.wsgi:application
     envVars:
