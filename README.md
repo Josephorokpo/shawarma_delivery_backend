@@ -53,7 +53,4 @@ The Shawarma Delivery Backend API is a robust and scalable RESTful API service d
 |                               API Documentation                                       |
 | GET    | /docs/                         | View API documentation          | All users |
 
-## Installation
-1. Step 1
-2. Step 2
-3. Step 3
+ 
